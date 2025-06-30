@@ -1,7 +1,6 @@
 // import { vehiclesRepository } from '../repositories/vehicles.js';
+import { Config } from '../config.js';
 import { getLoggedUser, createFormAlert, delay } from '../utils.js';
-
-const API_URL = 'http://localhost:3000';
 
 const carBrands = [
   'Volkswagen',
@@ -64,7 +63,7 @@ if (!user) {
 
 async function createVehicle(vehicle) {
   try {
-    const response = await fetch(`${API_URL}/vehicles`, {
+    const response = await fetch(`${Config.API_URL}/vehicles`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -86,9 +85,9 @@ function updateBrands() {
   const selectedType = document.querySelector(
     'input[name="type"]:checked'
   )?.value;
-  
+
   if (!selectedType) return;
-  
+
   const brands = selectedType === 'CAR' ? carBrands : motorcycleBrands;
 
   brandSelect.innerHTML = '<option value="">Selecione uma marca</option>';
@@ -104,9 +103,9 @@ function updateSeats() {
   const selectedType = document.querySelector(
     'input[name="type"]:checked'
   )?.value;
-  
+
   if (!selectedType) return;
-  
+
   if (selectedType === 'MOTORCYCLE') {
     availableSeatsInput.value = '1';
     availableSeatsInput.disabled = true;
@@ -129,7 +128,7 @@ typeRadios.forEach((radio) => {
 });
 
 // Verificar se há um tipo selecionado por padrão
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   const carRadio = document.getElementById('car');
   if (carRadio) {
     carRadio.checked = true;
@@ -175,13 +174,13 @@ form.addEventListener('submit', async (e) => {
     await createVehicle(vehicle);
     formAlert.show('Veículo cadastrado com sucesso!', { variant: 'success' });
     form.reset();
-    
+
     // Resetar para carro por padrão
     const carRadio = document.getElementById('car');
     if (carRadio) {
       carRadio.checked = true;
     }
-    
+
     updateBrands();
     updateSeats();
 
