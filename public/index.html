@@ -1,0 +1,483 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+      rel="stylesheet"
+    />
+    <title>EzRide - Compartilhe Caronas, Economize Dinheiro</title>
+    <style>
+      body {
+        font-family: 'Nunito', sans-serif;
+      }
+      
+      .hero-section {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 100px 0;
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .hero-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" fill="white" opacity="0.1"><polygon points="0,100 1000,0 1000,100"/></svg>');
+        background-size: cover;
+      }
+      
+      .hero-content {
+        position: relative;
+        z-index: 2;
+      }
+      
+      .hero-title {
+        font-size: 3.5rem;
+        font-weight: 800;
+        margin-bottom: 1.5rem;
+      }
+      
+      .hero-subtitle {
+        font-size: 1.3rem;
+        margin-bottom: 2rem;
+        opacity: 0.9;
+      }
+      
+      .btn-hero {
+        padding: 15px 30px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        border-radius: 50px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+      }
+      
+      .btn-hero:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      }
+      
+      .features-section {
+        padding: 80px 0;
+        background: #f8f9fa;
+      }
+      
+      .feature-card {
+        background: white;
+        border-radius: 15px;
+        padding: 2rem;
+        text-align: center;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        transition: all 0.3s ease;
+        height: 100%;
+        border: none;
+      }
+      
+      .feature-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+      }
+      
+      .feature-icon {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.5rem;
+        font-size: 2rem;
+        color: white;
+      }
+      
+      .stats-section {
+        padding: 60px 0;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+      }
+      
+      .stat-item {
+        text-align: center;
+        padding: 1rem;
+      }
+      
+      .stat-number {
+        font-size: 3rem;
+        font-weight: 800;
+        margin-bottom: 0.5rem;
+      }
+      
+      .stat-label {
+        font-size: 1.1rem;
+        opacity: 0.9;
+      }
+      
+      .how-it-works {
+        padding: 80px 0;
+        background: white;
+      }
+      
+      .step-card {
+        background: #f8f9fa;
+        border-radius: 15px;
+        padding: 2rem;
+        text-align: center;
+        position: relative;
+        height: 100%;
+      }
+      
+      .step-number {
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1rem;
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: white;
+      }
+      
+      .cta-section {
+        padding: 80px 0;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        text-align: center;
+      }
+      
+      .footer {
+        background: #2c3e50;
+        color: white;
+        padding: 40px 0 20px;
+      }
+      
+      .footer a {
+        color: #bdc3c7;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+      
+      .footer a:hover {
+        color: white;
+      }
+      
+      .social-links a {
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        background: #34495e;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 40px;
+        margin: 0 5px;
+        transition: all 0.3s ease;
+      }
+      
+      .social-links a:hover {
+        background: #667eea;
+        transform: translateY(-2px);
+      }
+      
+      @media (max-width: 768px) {
+        .hero-title {
+          font-size: 2.5rem;
+        }
+        
+        .hero-subtitle {
+          font-size: 1.1rem;
+        }
+        
+        .stat-number {
+          font-size: 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand fw-bold" href="#">
+          <i class="bi bi-car-front text-primary"></i> EzRide
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav" id="navbar-links"></ul>
+          <ul class="navbar-nav ms-auto"></ul>
+        </div>
+      </div>
+    </nav>
+
+    <section class="hero-section">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6 hero-content">
+            <h1 class="hero-title">Compartilhe Caronas, Economize Dinheiro</h1>
+            <p class="hero-subtitle">Conecte-se com outros passageiros e motoristas para viagens mais econômicas, sustentáveis e divertidas.</p>
+            <div class="d-flex gap-3 flex-wrap">
+              <a href="caronas/index.html" class="btn btn-light btn-hero">
+                <i class="bi bi-search"></i> Encontrar Carona
+              </a>
+              <a href="admin/destinations.html" class="btn btn-outline-light btn-hero">
+                <i class="bi bi-plus-circle"></i> Oferecer Carona
+              </a>
+            </div>
+          </div>
+          <div class="col-lg-6 text-center">
+            <img src="media/Ez1.png" alt="EzRide App" class="img-fluid" style="max-height: 400px;">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="features-section">
+      <div class="container">
+        <div class="row text-center mb-5">
+          <div class="col-lg-8 mx-auto">
+            <h2 class="display-4 fw-bold mb-3">Por que escolher o EzRide?</h2>
+            <p class="lead text-muted">Descubra as vantagens de compartilhar suas viagens conosco</p>
+          </div>
+        </div>
+        <div class="row g-4">
+          <div class="col-lg-4 col-md-6">
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="bi bi-currency-dollar"></i>
+              </div>
+              <h4 class="fw-bold mb-3">Economia</h4>
+              <p class="text-muted">Divida os custos de combustível e estacionamento, economizando até 70% em suas viagens.</p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="bi bi-leaf"></i>
+              </div>
+              <h4 class="fw-bold mb-3">Sustentabilidade</h4>
+              <p class="text-muted">Reduza a emissão de CO2 e ajude a preservar o meio ambiente compartilhando caronas.</p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="bi bi-shield-check"></i>
+              </div>
+              <h4 class="fw-bold mb-3">Segurança</h4>
+              <p class="text-muted">Perfis verificados e sistema de avaliações garantem viagens seguras e confiáveis.</p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="bi bi-people"></i>
+              </div>
+              <h4 class="fw-bold mb-3">Comunidade</h4>
+              <p class="text-muted">Conheça novas pessoas e faça networking durante suas viagens diárias.</p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="bi bi-clock"></i>
+              </div>
+              <h4 class="fw-bold mb-3">Flexibilidade</h4>
+              <p class="text-muted">Ofereça ou solicite caronas quando quiser, com horários flexíveis.</p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="bi bi-phone"></i>
+              </div>
+              <h4 class="fw-bold mb-3">Fácil de Usar</h4>
+              <p class="text-muted">Interface intuitiva e rápida para encontrar ou oferecer caronas em segundos.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3 col-md-6">
+            <div class="stat-item">
+              <div class="stat-number">1,500+</div>
+              <div class="stat-label">Usuários Ativos</div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="stat-item">
+              <div class="stat-number">5,000+</div>
+              <div class="stat-label">Caronas Realizadas</div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="stat-item">
+              <div class="stat-number">15,000+</div>
+              <div class="stat-label">Km Economizados</div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="stat-item">
+              <div class="stat-number">4.8★</div>
+              <div class="stat-label">Avaliação Média</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="how-it-works">
+      <div class="container">
+        <div class="row text-center mb-5">
+          <div class="col-lg-8 mx-auto">
+            <h2 class="display-4 fw-bold mb-3">Como Funciona</h2>
+            <p class="lead text-muted">Três passos simples para começar a compartilhar caronas</p>
+          </div>
+        </div>
+        <div class="row g-4">
+          <div class="col-lg-4">
+            <div class="step-card">
+              <div class="step-number">1</div>
+              <h4 class="fw-bold mb-3">Cadastre-se</h4>
+              <p class="text-muted">Crie sua conta gratuitamente e complete seu perfil com suas informações básicas.</p>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="step-card">
+              <div class="step-number">2</div>
+              <h4 class="fw-bold mb-3">Encontre ou Ofereça</h4>
+              <p class="text-muted">Procure por caronas disponíveis ou crie suas próprias rotas para oferecer caronas.</p>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="step-card">
+              <div class="step-number">3</div>
+              <h4 class="fw-bold mb-3">Viaje e Economize</h4>
+              <p class="text-muted">Conecte-se com outros usuários, faça sua viagem e economize dinheiro.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8 text-center">
+            <h2 class="display-4 fw-bold mb-4">Pronto para começar?</h2>
+            <p class="lead mb-4">Junte-se a milhares de usuários que já estão economizando e ajudando o meio ambiente.</p>
+            <div class="d-flex gap-3 justify-content-center flex-wrap">
+              <a href="register.html" class="btn btn-light btn-hero">
+                <i class="bi bi-person-plus"></i> Criar Conta
+              </a>
+              <a href="login.html" class="btn btn-outline-light btn-hero">
+                <i class="bi bi-box-arrow-in-right"></i> Fazer Login
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 mb-4">
+            <h5 class="mb-3">
+              <i class="bi bi-car-front text-primary"></i> EzRide
+            </h5>
+            <p class="text-white">Conectando pessoas através do compartilhamento de caronas para um futuro mais sustentável.</p>
+            <div class="social-links">
+              <a href="#"><i class="bi bi-facebook"></i></a>
+              <a href="#"><i class="bi bi-twitter"></i></a>
+              <a href="#"><i class="bi bi-instagram"></i></a>
+              <a href="#"><i class="bi bi-linkedin"></i></a>
+            </div>
+          </div>
+          <div class="col-lg-2 col-md-6 mb-4">
+            <h6 class="mb-3">Produto</h6>
+            <ul class="list-unstyled">
+              <li><a href="caronas/index.html">Encontrar Carona</a></li>
+              <li><a href="admin/destinations.html">Oferecer Carona</a></li>
+              <li><a href="historico/travelHistory.html">Histórico</a></li>
+              <li><a href="veiculos/index.html">Veículos</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-2 col-md-6 mb-4">
+            <h6 class="mb-3">Suporte</h6>
+            <ul class="list-unstyled">
+              <li><a href="#">Central de Ajuda</a></li>
+              <li><a href="#">Contato</a></li>
+              <li><a href="#">FAQ</a></li>
+              <li><a href="#">Comunidade</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-2 col-md-6 mb-4">
+            <h6 class="mb-3">Empresa</h6>
+            <ul class="list-unstyled">
+              <li><a href="#">Sobre Nós</a></li>
+              <li><a href="#">Carreiras</a></li>
+              <li><a href="#">Imprensa</a></li>
+              <li><a href="#">Blog</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-2 col-md-6 mb-4">
+            <h6 class="mb-3">Legal</h6>
+            <ul class="list-unstyled">
+              <li><a href="#">Termos de Uso</a></li>
+              <li><a href="#">Privacidade</a></li>
+              <li><a href="#">Cookies</a></li>
+              <li><a href="#">Licenças</a></li>
+            </ul>
+          </div>
+        </div>
+        <hr class="my-4" style="border-color: #34495e;">
+        <div class="col align-items-center text-center">
+            <p class="mb-0 text-white">&copy; 2025 EzRide. Todos os direitos reservados.</p>
+        </div>
+    </div>
+    </footer>
+
+    <script src="./scripts/main.js" type="module"></script>
+  </body>
+</html>

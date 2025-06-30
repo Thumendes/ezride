@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EzRide - Cadastro</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: 'Nunito', sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem 0;
+      }
+
+      .register-container {
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+        max-width: 450px;
+        width: 100%;
+        margin: 0 auto;
+      }
+
+      .register-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 2rem;
+        text-align: center;
+      }
+
+      .register-header h2 {
+        margin: 0;
+        font-weight: 800;
+        font-size: 2rem;
+      }
+
+      .register-header p {
+        margin: 0.5rem 0 0 0;
+        opacity: 0.9;
+      }
+
+      .register-body {
+        padding: 2rem;
+      }
+
+      .form-floating {
+        margin-bottom: 1.5rem;
+      }
+
+      .form-floating .form-control {
+        border-radius: 10px;
+        border: 2px solid #e9ecef;
+        padding: 1rem 0.75rem;
+        transition: all 0.3s ease;
+      }
+
+      .form-floating .form-control:focus {
+        border-color: #667eea;
+        box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+      }
+
+      .register-btn {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border: none;
+        color: white;
+        font-weight: 600;
+        padding: 1rem;
+        border-radius: 10px;
+        width: 100%;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+        margin-bottom: 1rem;
+      }
+
+      .register-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        color: white;
+      }
+
+      .login-link {
+        text-align: center;
+        color: #6c757d;
+      }
+
+      .login-link a {
+        color: #667eea;
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      .login-link a:hover {
+        text-decoration: underline;
+      }
+
+      .alert {
+        border-radius: 10px;
+        border: none;
+        margin-bottom: 1rem;
+      }
+
+      .alert-success {
+        background: #d4edda;
+        color: #155724;
+      }
+
+      .alert-danger {
+        background: #f8d7da;
+        color: #721c24;
+      }
+
+      .brand-logo {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+      }
+
+      .password-requirements {
+        font-size: 0.85rem;
+        color: #6c757d;
+        margin-top: 0.5rem;
+      }
+
+      .requirement {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0.25rem;
+      }
+
+      .requirement i {
+        margin-right: 0.5rem;
+        font-size: 0.75rem;
+      }
+
+      .requirement.valid {
+        color: #198754;
+      }
+
+      .requirement.invalid {
+        color: #dc3545;
+      }
+
+      .shake {
+        animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both;
+      }
+      @keyframes shake {
+        10%, 90% { transform: translateX(-2px); }
+        20%, 80% { transform: translateX(4px); }
+        30%, 50%, 70% { transform: translateX(-8px); }
+        40%, 60% { transform: translateX(8px); }
+        100% { transform: translateX(0); }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="register-container">
+      <div class="register-header">
+        <div class="brand-logo">
+          <i class="bi bi-car-front"></i>
+        </div>
+        <h2>EzRide</h2>
+        <p>Crie sua conta gratuitamente</p>
+      </div>
+      
+      <div class="register-body">
+        <form id="registerForm">
+          <div class="form-floating">
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              name="name"
+              placeholder="Seu nome completo"
+              required
+            />
+            <label for="name">
+              <i class="bi bi-person"></i> Nome Completo
+            </label>
+          </div>
+
+          <div class="form-floating">
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              name="email"
+              placeholder="nome@exemplo.com"
+              required
+            />
+            <label for="email">
+              <i class="bi bi-envelope"></i> Email
+            </label>
+          </div>
+
+          <div class="form-floating position-relative">
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              name="password"
+              placeholder="Sua senha"
+              required
+            />
+            <label for="password">
+              <i class="bi bi-lock"></i> Senha
+            </label>
+            <button type="button" tabindex="-1" class="btn btn-link position-absolute top-50 end-0 translate-middle-y me-2 p-0" id="togglePassword" style="z-index:2;">
+              <i class="bi bi-eye-slash" id="togglePasswordIcon"></i>
+            </button>
+          </div>
+
+          <div class="password-requirements">
+            <div class="requirement invalid" id="req-length">
+              <i class="bi bi-x-circle"></i> Mínimo 6 caracteres
+            </div>
+            <div class="requirement invalid" id="req-uppercase">
+              <i class="bi bi-x-circle"></i> Pelo menos 1 maiúscula
+            </div>
+            <div class="requirement invalid" id="req-number">
+              <i class="bi bi-x-circle"></i> Pelo menos 1 número
+            </div>
+          </div>
+
+          <div class="form-floating position-relative">
+            <input
+              type="password"
+              class="form-control"
+              id="confirmPassword"
+              name="confirmPassword"
+              placeholder="Confirme sua senha"
+              required
+            />
+            <label for="confirmPassword">
+              <i class="bi bi-lock-fill"></i> Confirmar Senha
+            </label>
+            <button type="button" tabindex="-1" class="btn btn-link position-absolute top-50 end-0 translate-middle-y me-2 p-0" id="toggleConfirmPassword" style="z-index:2;">
+              <i class="bi bi-eye-slash" id="toggleConfirmPasswordIcon"></i>
+            </button>
+          </div>
+
+          <div class="form-floating">
+            <select class="form-select" id="role" name="role" required>
+              <option value="">Selecione seu tipo de conta</option>
+              <option value="passenger">Passageiro</option>
+              <option value="driver">Motorista</option>
+            </select>
+            <label for="role">
+              <i class="bi bi-person-badge"></i> Tipo de Conta
+            </label>
+          </div>
+
+          <button type="submit" class="register-btn">
+            <i class="bi bi-person-plus"></i> Criar Conta
+          </button>
+        </form>
+
+        <div class="login-link">
+          <p>Já tem uma conta? <a href="login.html">Faça login</a></p>
+        </div>
+      </div>
+    </div>
+
+    <script src="./scripts/main.js" type="module"></script>
+    <script src="./scripts/page/register.js" type="module"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const passwordInput = document.getElementById('password');
+        const reqLength = document.getElementById('req-length');
+        const reqUppercase = document.getElementById('req-uppercase');
+        const reqNumber = document.getElementById('req-number');
+
+        function validatePasswordRequirements() {
+          const value = passwordInput.value;
+          const hasLength = value.length >= 6;
+          const hasUppercase = /[A-Z]/.test(value);
+          const hasNumber = /[0-9]/.test(value);
+
+          reqLength.className = 'requirement ' + (hasLength ? 'valid' : 'invalid');
+          reqLength.querySelector('i').className = hasLength ? 'bi bi-check-circle' : 'bi bi-x-circle';
+
+          reqUppercase.className = 'requirement ' + (hasUppercase ? 'valid' : 'invalid');
+          reqUppercase.querySelector('i').className = hasUppercase ? 'bi bi-check-circle' : 'bi bi-x-circle';
+
+          reqNumber.className = 'requirement ' + (hasNumber ? 'valid' : 'invalid');
+          reqNumber.querySelector('i').className = hasNumber ? 'bi bi-check-circle' : 'bi bi-x-circle';
+        }
+
+        if (passwordInput) {
+          passwordInput.addEventListener('input', validatePasswordRequirements);
+          validatePasswordRequirements();
+        }
+      });
+
+      document.addEventListener('DOMContentLoaded', function() {
+        const passwordInput = document.getElementById('password');
+        const togglePassword = document.getElementById('togglePassword');
+        const togglePasswordIcon = document.getElementById('togglePasswordIcon');
+        if (togglePassword && passwordInput) {
+          togglePassword.addEventListener('click', function() {
+            const type = passwordInput.type === 'password' ? 'text' : 'password';
+            passwordInput.type = type;
+            togglePasswordIcon.className = type === 'password' ? 'bi bi-eye-slash' : 'bi bi-eye';
+          });
+        }
+        const confirmPasswordInput = document.getElementById('confirmPassword');
+        const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
+        const toggleConfirmPasswordIcon = document.getElementById('toggleConfirmPasswordIcon');
+        if (toggleConfirmPassword && confirmPasswordInput) {
+          toggleConfirmPassword.addEventListener('click', function() {
+            const type = confirmPasswordInput.type === 'password' ? 'text' : 'password';
+            confirmPasswordInput.type = type;
+            toggleConfirmPasswordIcon.className = type === 'password' ? 'bi bi-eye-slash' : 'bi bi-eye';
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBfCcRWfOA0RWsbprI4q6T2hPXmeNmLv_E&libraries=geometry,places"></script>
+    <link rel="stylesheet" href="./styles.css">
+    <style>
+        #confirmationModal {
+            z-index: 1060 !important;
+        }
+        .modal-backdrop + .modal-backdrop {
+            z-index: 1059 !important;
+        }
+    </style>
+    <title>Resumo da Carona - EasyRide</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">EzRide</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav" id="navbar-links"></ul>
+          <ul class="navbar-nav ms-auto"></ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container mt-5">
+      <h2 class="mb-5 text-center fw-bold" style="color:#120022;">Minhas Corridas</h2>
+      <div class="row justify-content-center" id="ridesList"></div>
+    </div>
+
+    <div class="modal fade" id="confirmationModal" tabindex="-1" style="z-index: 1060;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="background: #120022; color: white;">
+                    <h5 class="modal-title" id="confirmationTitle"></h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p id="confirmationMessage"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="confirmAction">Confirmar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="rideDetailsModal" tabindex="-1">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header" style="background: #120022; color: white;">
+                    <h5 class="modal-title">
+                        <i class="bi bi-car-front me-2"></i>
+                        Detalhes da Corrida
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Status da Corrida -->
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header" style="background: #120022; color: white;">
+                                    <h6 class="mb-0">
+                                        <i class="bi bi-car-front me-2"></i>
+                                        Status da Corrida
+                                    </h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <div>
+                                            <span id="modalRideStatus" class="badge fs-6 px-3 py-2"></span>
+                                            <p class="mt-2 mb-0 text-muted" id="modalStatusDescription"></p>
+                                            <div id="rideTimerContainer" class="mt-2" style="display: none;">
+                                                <small class="text-muted">Tempo de viagem:</small>
+                                                <span id="rideTimer" class="fw-bold text-primary ms-2"></span>
+                                            </div>
+                                        </div>
+                                        <div id="modalActionButtons" class="d-flex gap-2">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="card mb-4">
+                                <div class="card-header" style="background: #120022; color: white;">
+                                    <h6 class="mb-0">
+                                        <i class="bi bi-info-circle me-2"></i>
+                                        Informações da Viagem
+                                    </h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <h6><i class="bi bi-person-circle text-primary"></i> Passageiro</h6>
+                                        <p id="modalPassengerName" class="fw-bold mb-2"></p>
+                                        <p id="modalPassengerEmail" class="text-muted small mb-0"></p>
+                                    </div>
+                                    <hr>
+                                    <div class="mb-3">
+                                        <h6><i class="bi bi-geo-alt text-success"></i> Origem</h6>
+                                        <p id="modalOriginAddress" class="mb-0"></p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <h6><i class="bi bi-geo-alt-fill text-danger"></i> Destino</h6>
+                                        <p id="modalDestinationAddress" class="mb-0"></p>
+                                    </div>
+                                    <hr>
+                                    <div class="mb-3">
+                                        <h6><i class="bi bi-clock text-warning"></i> Horário de Saída</h6>
+                                        <p id="modalDepartureTime" class="fw-bold mb-0"></p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <h6><i class="bi bi-stopwatch text-primary"></i> Tempo Esperado</h6>
+                                        <p id="modalExpectedTime" class="fw-bold mb-0 text-primary"></p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <h6><i class="bi bi-calendar text-info"></i> Data</h6>
+                                        <p id="modalDepartureDate" class="mb-0"></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card mb-4 driver-card">
+                                <div class="card-header" style="background: #120022; color: white;">
+                                    <h6 class="mb-0">
+                                        <i class="bi bi-person-badge me-2"></i>
+                                        Informações do Motorista
+                                    </h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <h6><i class="bi bi-person text-primary"></i> Nome</h6>
+                                        <p id="modalDriverName" class="fw-bold mb-2 text-dark"></p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <h6><i class="bi bi-car-front text-success"></i> Veículo</h6>
+                                        <p id="modalVehicleInfo" class="mb-0 text-dark"></p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <h6><i class="bi bi-telephone text-info"></i> Contato</h6>
+                                        <p id="modalDriverContact" class="mb-0 text-dark"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-8">
+                            <div class="card">
+                                <div class="card-header" style="background: #120022; color: white;">
+                                    <h6 class="mb-0">
+                                        <i class="bi bi-map me-2"></i>
+                                        Rota da Viagem
+                                    </h6>
+                                </div>
+                                <div class="card-body p-0">
+                                    <div id="modalMap" style="height: 400px; width: 100%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-4" id="modalFinalSummary" style="display: none;">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header" style="background: #120022; color: white;">
+                                    <h6 class="mb-0">
+                                        <i class="bi bi-check-circle me-2"></i>
+                                        Resumo Final
+                                    </h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h6><i class="bi bi-clock-history text-primary"></i> Duração da Viagem</h6>
+                                            <p id="modalTripDuration" class="fw-bold"></p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <h6><i class="bi bi-calendar-check text-success"></i> Data de Conclusão</h6>
+                                            <p id="modalCompletionDate" class="fw-bold"></p>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-12">
+                                            <h6><i class="bi bi-chat-text text-info"></i> Observações</h6>
+                                            <p id="modalTripNotes" class="text-muted">Nenhuma observação registrada.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../scripts/main.js" type="module"></script>
+    <script type="module" src="./script.js"></script>
+  </body>
+</html> 

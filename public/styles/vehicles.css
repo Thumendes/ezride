@@ -1,0 +1,13 @@
+.form-check {
+    margin-bottom: 0.5rem;
+}
+
+.table th {
+    background-color: #f8f9fa;
+}
+
+@media (max-width: 768px) {
+    .col-md-6 {
+        margin-bottom: 2rem;
+    }
+} 

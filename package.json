@@ -1,0 +1,38 @@
+{
+  "name": "codigo",
+  "version": "1.0.0",
+  "description": "Mantenha neste diretório todo o código fonte do projeto.",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "json-server db.json",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.css": [
+      "prettier --write"
+    ],
+    "*.html": [
+      "prettier --write"
+    ]
+  },
+  "devDependencies": {
+    "@eslint/css": "^0.7.0",
+    "@eslint/js": "^9.26.0",
+    "eslint": "^9.26.0",
+    "globals": "^16.0.0",
+    "lint-staged": "^15.5.1",
+    "prettier": "^3.5.3"
+  },
+  "dependencies": {
+    "json-server": "^1.0.0-beta.3"
+  }
+}

@@ -1,0 +1,888 @@
+body {
+    background-color: #f8f9fa;
+}
+
+.card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-header {
+    border-radius: 15px 15px 0 0 !important;
+    border-bottom: none;
+    font-weight: 600;
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+#rideStatus {
+    font-size: 1.1rem !important;
+    padding: 0.75rem 1.5rem !important;
+    border-radius: 25px;
+    font-weight: 600;
+}
+
+.btn {
+    border-radius: 25px;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-success {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    border: none;
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, #dc3545, #e74c3c);
+    border: none;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    border: none;
+}
+
+#map {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.modal-content {
+    border-radius: 15px;
+    border: none;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.modal-header {
+    border-radius: 15px 15px 0 0;
+    border-bottom: none;
+}
+
+.modal-footer {
+    border-radius: 0 0 15px 15px;
+    border-top: none;
+}
+
+@media (max-width: 768px) {
+    #map {
+        height: 300px !important;
+    }
+}
+
+#rideStatus {
+    font-size: 1.1rem !important;
+    padding: 0.75rem 1.5rem !important;
+    border-radius: 25px;
+    font-weight: 600;
+}
+
+.btn {
+    border-radius: 25px;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-success {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    border: none;
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, #dc3545, #e74c3c);
+    border: none;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    border: none;
+}
+
+.info-section {
+    margin-bottom: 1.5rem;
+}
+
+.info-section h6 {
+    color: #495057;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.info-section p {
+    color: #212529;
+    margin-bottom: 0.25rem;
+}
+
+#map {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#finalSummary .card {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+}
+
+.modal-content {
+    border-radius: 15px;
+    border: none;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.modal-header {
+    border-radius: 15px 15px 0 0;
+    border-bottom: none;
+}
+
+.modal-footer {
+    border-radius: 0 0 15px 15px;
+    border-top: none;
+}
+
+@media (max-width: 768px) {
+    .card-body {
+        padding: 1rem;
+    }
+    
+    .btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    #rideStatus {
+        font-size: 1rem !important;
+        padding: 0.5rem 1rem !important;
+    }
+    
+    #map {
+        height: 300px !important;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card {
+    animation: fadeIn 0.5s ease-out;
+}
+
+.timer-active {
+    color: #007bff;
+    font-weight: 600;
+}
+
+.bi {
+    margin-right: 0.5rem;
+}
+
+hr {
+    border-color: #dee2e6;
+    margin: 1.5rem 0;
+}
+
+.badge {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+}
+
+.driver-info, .passenger-info {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    padding: 1rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+
+.container {
+    max-width: 1200px;
+}
+
+h2 {
+    color: #120022;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.navbar-brand {
+    font-weight: 700;
+    color: #120022 !important;
+}
+
+.final-summary-footer {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: white;
+    padding: 1rem;
+    border-radius: 10px;
+    margin-top: 1rem;
+}
+
+.trip-info {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    padding: 1.5rem;
+    border-radius: 15px;
+    margin-bottom: 1.5rem;
+}
+
+.trip-info h6 {
+    color: #120022;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+}
+
+.trip-info p {
+    color: #495057;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.status-real-time {
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: white;
+    padding: 1rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.action-buttons .btn {
+    flex: 1;
+    min-width: 150px;
+}
+
+.map-container {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.map-overlay {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 0.5rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    z-index: 1000;
+}
+
+.driver-card {
+    background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+    border-left: 4px solid #2196f3;
+}
+
+.passenger-card {
+    background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+    border-left: 4px solid #9c27b0;
+}
+.final-summary {
+    background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
+    border-left: 4px solid #4caf50;
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+}
+
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #120022;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.error-message {
+    background: linear-gradient(135deg, #ffebee, #ffcdd2);
+    border-left: 4px solid #f44336;
+    padding: 1rem;
+    border-radius: 10px;
+    margin: 1rem 0;
+}
+
+.success-message {
+    background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
+    border-left: 4px solid #4caf50;
+    padding: 1rem;
+    border-radius: 10px;
+    margin: 1rem 0;
+}
+
+body {
+    background-color: #f8f9fa;
+}
+
+.ride-card {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.ride-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.ride-card .card-header {
+    border-bottom: none;
+    padding: 1rem;
+}
+
+.ride-card .card-body {
+    padding: 1.5rem;
+}
+
+.badge {
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+}
+
+.btn {
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.modal-xl {
+    max-width: 1200px;
+}
+
+.modal-content {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.modal-header {
+    border-bottom: none;
+    padding: 1.5rem;
+}
+
+.modal-body {
+    padding: 1.5rem;
+}
+
+.modal-footer {
+    border-top: none;
+    padding: 1.5rem;
+}
+
+.modal .card {
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.modal .card-header {
+    border-bottom: none;
+    padding: 1rem;
+}
+
+.modal .card-body {
+    padding: 1.25rem;
+}
+
+#map, #modalMap {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+@media (max-width: 768px) {
+    .ride-card {
+        margin-bottom: 1rem;
+    }
+    
+    .modal-xl {
+        max-width: 95%;
+        margin: 1rem auto;
+    }
+    
+    .modal-body {
+        padding: 1rem;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.ride-card {
+    animation: fadeIn 0.5s ease-out;
+}
+
+.spinner-border {
+    width: 3rem;
+    height: 3rem;
+}
+
+.bi {
+    vertical-align: middle;
+}
+
+.small {
+    font-size: 0.875rem;
+}
+
+.mb-2 {
+    margin-bottom: 0.5rem !important;
+}
+
+.mb-3 {
+    margin-bottom: 1rem !important;
+}
+
+.mt-3 {
+    margin-top: 1rem !important;
+}
+
+.text-primary {
+    color: #007bff !important;
+}
+
+.text-success {
+    color: #28a745 !important;
+}
+
+.text-danger {
+    color: #dc3545 !important;
+}
+
+.text-warning {
+    color: #ffc107 !important;
+}
+
+.text-info {
+    color: #17a2b8 !important;
+}
+
+.bg-light {
+    background-color: #f8f9fa !important;
+}
+
+.ride-history-list {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 0;
+}
+
+.ride-history-card {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  margin-bottom: 1.5rem;
+  padding: 1.5rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: box-shadow 0.2s;
+  border: none;
+}
+.ride-history-card:hover {
+  box-shadow: 0 6px 24px rgba(0,0,0,0.10);
+}
+.ride-history-info {
+  flex: 1 1 auto;
+}
+.ride-history-title {
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 0.25rem;
+}
+.ride-history-address {
+  color: #555;
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+}
+.ride-history-meta {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 0.5rem;
+}
+.ride-history-meta .text-danger {
+  font-weight: 500;
+}
+.ride-history-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.ride-history-status {
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 0.3rem 1rem;
+  margin-right: 0.5rem;
+}
+.ride-history-btn {
+  border-radius: 20px;
+  font-size: 0.95rem;
+  padding: 0.3rem 1.1rem;
+  border: 1px solid #120022;
+  background: #fff;
+  color: #120022;
+  font-weight: 500;
+  transition: background 0.2s, color 0.2s;
+}
+.ride-history-btn:hover {
+  background: #120022;
+  color: #fff;
+}
+
+@media (max-width: 900px) {
+  .ride-history-list {
+    max-width: 98vw;
+    padding: 0 0.5rem;
+  }
+  .ride-history-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.2rem 1rem;
+  }
+  .ride-history-actions {
+    margin-top: 1rem;
+  }
+}
+
+/* Estilos modernos para os cards do resumo */
+.ride-summary-card {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.ride-summary-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+}
+
+.ride-summary-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.ride-summary-card .card-body {
+    padding: 2rem;
+}
+
+.ride-summary-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+}
+
+.ride-summary-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #120022;
+    margin: 0;
+    flex-grow: 1;
+}
+
+.ride-summary-status {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.ride-summary-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.ride-summary-info-item {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem;
+    background: rgba(102, 126, 234, 0.05);
+    border-radius: 12px;
+    border-left: 3px solid #667eea;
+}
+
+.ride-summary-info-item i {
+    font-size: 1.2rem;
+    margin-right: 0.75rem;
+    width: 20px;
+    text-align: center;
+}
+
+.ride-summary-info-content {
+    flex-grow: 1;
+}
+
+.ride-summary-info-label {
+    font-size: 0.8rem;
+    color: #6c757d;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+}
+
+.ride-summary-info-value {
+    font-weight: 600;
+    color: #120022;
+    margin: 0;
+}
+
+.ride-summary-route {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 15px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.ride-summary-route::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, #28a745 0%, #20c997 50%, #dc3545 100%);
+    transform: translateX(-50%);
+}
+
+.ride-summary-origin,
+.ride-summary-destination {
+    position: relative;
+    padding-left: 2rem;
+    margin-bottom: 1rem;
+}
+
+.ride-summary-origin::before,
+.ride-summary-destination::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    transform: translateY(-50%);
+}
+
+.ride-summary-origin::before {
+    background: #28a745;
+    box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.2);
+}
+
+.ride-summary-destination::before {
+    background: #dc3545;
+    box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.2);
+}
+
+.ride-summary-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.ride-summary-btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.ride-summary-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.ride-summary-btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.ride-summary-btn-success {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    color: white;
+}
+
+.ride-summary-btn-danger {
+    background: linear-gradient(135deg, #dc3545 0%, #e74c3c 100%);
+    color: white;
+}
+
+.ride-summary-btn-outline {
+    background: transparent;
+    border: 2px solid #667eea;
+    color: #667eea;
+}
+
+.ride-summary-btn-outline:hover {
+    background: #667eea;
+    color: white;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .ride-summary-info {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .ride-summary-card .card-body {
+        padding: 1.5rem;
+    }
+    
+    .ride-summary-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .ride-summary-btn {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .ride-summary-header {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: stretch;
+    }
+    
+    .ride-summary-status {
+        align-self: flex-start;
+    }
+}
+
+/* Melhorias no modal */
+.modal-xl .modal-content {
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.modal-xl .modal-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-bottom: none;
+    padding: 1.5rem 2rem;
+}
+
+.modal-xl .modal-body {
+    padding: 2rem;
+}
+
+.modal-xl .modal-footer {
+    border-top: none;
+    padding: 1.5rem 2rem;
+}
+
+.modal-xl .card {
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border: none;
+}
+
+.modal-xl .card-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 15px 15px 0 0;
+    border-bottom: none;
+    padding: 1rem 1.5rem;
+}
+
+.modal-xl .card-body {
+    padding: 1.5rem;
+}
+
+#modalMap {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Animações */
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.ride-summary-card {
+    animation: slideInUp 0.6s ease-out;
+}
+
+.ride-summary-card:nth-child(1) { animation-delay: 0.1s; }
+.ride-summary-card:nth-child(2) { animation-delay: 0.2s; }
+.ride-summary-card:nth-child(3) { animation-delay: 0.3s; }
+.ride-summary-card:nth-child(4) { animation-delay: 0.4s; }
+.ride-summary-card:nth-child(5) { animation-delay: 0.5s; } 

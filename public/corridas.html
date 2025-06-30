@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EzRide - Corridas</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <style>
+    body { background: #f8f9fa; font-family: 'Nunito', sans-serif; }
+    .page-header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 2.5rem 0 1.5rem; margin-bottom: 2rem; }
+    .page-header h1 { font-size: 2rem; font-weight: 800; }
+    .modern-card { background: white; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); border: none; margin-bottom: 2rem; }
+    .ride-actions .btn { min-width: 120px; }
+    .empty-state { text-align: center; color: #6c757d; padding: 3rem 1rem; }
+    .empty-state i { font-size: 3rem; margin-bottom: 1rem; opacity: 0.5; }
+    .status-badge { font-size: 0.8rem; padding: 0.5rem 1rem; }
+    .destination-card { transition: all 0.3s ease; }
+    .destination-card:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,0.12); }
+    .pac-container { z-index: 2000 !important; }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">EzRide</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav" id="navbar-links"></ul>
+        <ul class="navbar-nav ms-auto"></ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <div class="container d-flex align-items-center gap-3">
+      <i class="bi bi-flag text-white fs-1 me-2"></i>
+      <div>
+        <h1 class="display-6 fw-bold mb-1" id="page-title">Corridas Disponíveis</h1>
+        <p class="lead mb-0" id="page-subtitle">Veja e gerencie suas solicitações de carona</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container mb-4">
+    <div id="ride-create-container" style="display:none;">
+      <button class="btn btn-primary mb-3" id="btn-open-create-ride">
+        <i class="bi bi-plus-circle"></i> Criar Carona
+      </button>
+    </div>
+  </div>
+
+  <div class="container" id="rides-list-container">
+    <div id="rides-list"></div>
+    <div id="empty-state" class="empty-state" style="display:none;">
+      <i class="bi bi-inbox"></i>
+      <h4 class="mb-3 fw-bold" id="empty-title">Nenhuma solicitação disponível</h4>
+      <p class="lead mb-0" id="empty-subtitle">Aguarde por novas solicitações de carona!</p>
+    </div>
+  </div>
+
+  <div class="modal fade" id="createRideModal" tabindex="-1" aria-labelledby="createRideModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="createRideModalLabel">Criar Nova Carona</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        </div>
+        <div class="modal-body">
+          <form id="createRideForm">
+            <div class="mb-3">
+              <label for="rideStartAddress" class="form-label">Origem</label>
+              <input type="text" class="form-control" id="rideStartAddress" required autocomplete="off" />
+              <input type="hidden" id="rideStartLat" />
+              <input type="hidden" id="rideStartLng" />
+            </div>
+            <div class="mb-3">
+              <label for="rideEndAddress" class="form-label">Destino</label>
+              <input type="text" class="form-control" id="rideEndAddress" required autocomplete="off" />
+              <input type="hidden" id="rideEndLat" />
+              <input type="hidden" id="rideEndLng" />
+            </div>
+            <div id="rideMap" style="height: 250px; border-radius: 10px; margin-bottom: 1rem;"></div>
+            <div class="mb-3">
+              <label for="rideStartTime" class="form-label">Horário</label>
+              <input type="time" class="form-control" id="rideStartTime" required />
+            </div>
+            <div class="mb-3">
+              <label for="rideVehicle" class="form-label">Veículo</label>
+              <select class="form-select" id="rideVehicle" required>
+                <option value="">Selecione um veículo</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="rideSeats" class="form-label">Vagas</label>
+              <input type="number" class="form-control" id="rideSeats" min="1" max="6" required disabled />
+            </div>
+            <button type="submit" class="btn btn-success w-100">Salvar Carona</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="detalhesModal" tabindex="-1" aria-labelledby="detalhesModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content modern-modal">
+        <div class="modal-header" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 15px 15px 0 0;">
+          <h5 class="modal-title d-flex align-items-center gap-2" id="detalhesModalLabel">
+            <i class="bi bi-eye"></i> Detalhes da Solicitação
+          </h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        </div>
+        <div class="modal-body p-4" style="background: #f8f9fa;">
+          <div id="map" style="height: 350px; width: 100%; border-radius: 12px; margin-bottom: 1.5rem;"></div>
+          <div id="detalhes-info" class="mb-2"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="./scripts/main.js" type="module"></script>
+  <script src="./scripts/page/rides.js" type="module"></script>
+  <script>
+    ((g) => {
+      var h,
+        a,
+        k,
+        p = 'The Google Maps JavaScript API',
+        c = 'google',
+        l = 'importLibrary',
+        q = '__ib__',
+        m = document,
+        b = window;
+      b = b[c] || (b[c] = {});
+      var d = b.maps || (b.maps = {}),
+        r = new Set(['places']),
+        e = new URLSearchParams(),
+        u = () =>
+          h || (h = new Promise(async (f, n) => {
+            await (a = m.createElement('script'));
+            e.set('libraries', 'places');
+            for (k in g)
+              e.set(
+                k.replace(/[A-Z]/g, (t) => '_' + t[0].toLowerCase()),
+                g[k]
+              );
+            e.set('callback', c + '.maps.' + q);
+            a.src = `https://maps.${c}apis.com/maps/api/js?` + e;
+            d[q] = f;
+            a.onerror = () => (h = n(Error(p + ' could not load.')));
+            a.nonce = m.querySelector('script[nonce]')?.nonce || '';
+            m.head.append(a);
+          }));
+      d[l]
+        ? console.warn(p + ' only loads once. Ignoring:', g)
+        : (d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n)));
+    })({
+      key: 'AIzaSyBfCcRWfOA0RWsbprI4q6T2hPXmeNmLv_E',
+      v: 'weekly',
+    });
+  </script>
+</body>
+</html> 
